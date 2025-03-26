@@ -47,6 +47,7 @@ const NavBar = () => {
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             <li>{links}</li>
+                            <li><button onClick={handleLogout} className=' underline my-auto cursor-pointer'>Logout</button></li>
                         </ul>
                     </div>
                     <a className="btn btn-ghost text-xl">Chill Gamer</a>
@@ -56,14 +57,14 @@ const NavBar = () => {
                         {links}
                     </ul>
                 </div>
-                <div className="navbar-end">
+                <div className="lg:navbar-end ">
                     {user?.email ? (
                         <div className='flex'>
                             <div className='justify-center items-center flex flex-col mr-4'>
                                 {/* <img className='w-10 rounded-full' src={user.photoURL} alt={user.name} /> */}
                                 <p className='font-bold'>{user.email}</p>
                             </div>
-                            <button onClick={handleLogout} className=' underline my-auto cursor-pointer'>Logout</button>
+                            <div className='hidden sm:block'><button onClick={handleLogout} className=' underline my-auto cursor-pointer'>Logout</button></div>
                         </div>
                     ) : (
                         <Link to={"/login"} className="btn">Login/ Register</Link>

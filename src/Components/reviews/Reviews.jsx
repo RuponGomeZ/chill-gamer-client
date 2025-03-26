@@ -6,7 +6,7 @@ const Reviews = () => {
     console.log(loaderData);
     // const { img, title, genre, publishingYear } = loaderData;
     return (
-        <div className='grid grid-cols-3 gap-10'>
+        <div className='grid sm:grid-cols-1 lg:grid-cols-3  gap-10'>
             {
                 loaderData.map(review =>
                     <div key={review._id} className="card bg-base-100 w-96 shadow-xl">

@@ -1,24 +1,42 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from './AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
 const Login = () => {
-    const { googleLogin, loginWithEmailNameAndPassword } = useContext(AuthContext);
+    const { user, googleLogin, loginWithEmailNameAndPassword } = useContext(AuthContext);
     // console.log(googleLogin);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (user) {
+            navigate("/");
+        }
+    }, [user, navigate]);
 
     const handleLogin = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        loginWithEmailNameAndPassword(email, password);
+        loginWithEmailNameAndPassword(email, password)
+            .then(() => {
+                navigate(location?.state?.from || "/");
+            })
+            .catch((error) => {
+                setError(error.message);
+            });
     }
 
     const loginWithGoogle = () => {
         googleLogin()
+            .then(() => {
+                navigate(location?.state?.from || "/");
+            })
+            .catch((error) => {
+                setError(error.message);
+            });
     }
 
     return (
