@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Authontications/AuthProvider';
 import Swal from 'sweetalert2';
+import { NavLink } from 'react-router-dom';
 
 const MyReviews = () => {
     const { user } = useContext(AuthContext);
@@ -96,7 +97,7 @@ const MyReviews = () => {
                                 <td>{review.publishingYear}</td>
                                 <td>{review.rating}</td>
                                 <td className='flex gap-5'>
-                                    <button>Update</button>
+                                    <button><NavLink to={`/update-review/${review._id}`}>Update</NavLink></button>
                                     <button onClick={() => handleDelete(review._id)} className='text-red-700'>Delete</button>
                                 </td>
                             </tr>

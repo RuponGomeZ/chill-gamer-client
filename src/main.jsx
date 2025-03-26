@@ -15,6 +15,7 @@ import Signup from './Components/Authontications/Signup';
 import MyReviews from './Components/reviews/MyReviews';
 import PrivateRoute from './Components/Authontications/PrivateRoute';
 import ReviewDetails from './Components/reviews/ReviewDetails';
+import UpdateReview from './Components/reviews/UpdateReview';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
         path: "/my-reviews/:email",
         element: <PrivateRoute><MyReviews></MyReviews></PrivateRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/my-reviews/${params.email}`)
+      },
+      {
+        path: '/update-review/:id',
+        element: <UpdateReview></UpdateReview>,
+        loader: ({ params }) => fetch(`http://localhost:5000/update-review/${params.id}`)
       },
       {
         path: "/login",
