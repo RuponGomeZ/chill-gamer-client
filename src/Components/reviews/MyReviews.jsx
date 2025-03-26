@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Authontications/AuthProvider';
+import Swal from 'sweetalert2';
 
 const MyReviews = () => {
     const { user } = useContext(AuthContext);
@@ -7,13 +8,70 @@ const MyReviews = () => {
     console.log(user);
 
     const [myReviews, setMyReviews] = useState([]);
+    console.log(myReviews);
+
     useEffect(() => {
-        fetch(`http://localhost:5000/my-reviews/${user.email}`)
+        fetch(`http://localhost:5000/my-reviews/${email}`)
             .then(res => res.json())
             .then(data => setMyReviews(data))
             .catch(err => console.log(err))
     }, [email])
-    // const 
+
+    const handleDelete = (id) => {
+        console.log(id);
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swalWithBootstrapButtons.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: true
+        })
+
+            .then((result) => {
+                if (result.isConfirmed) {
+                    fetch(`http://localhost:5000/delete-review/${id}`, {
+                        method: 'DELETE'
+                    }
+                    )
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.deletedCount > 0) {
+                                const remainingReviews = myReviews.filter(review => review._id !== id);
+                                setMyReviews(remainingReviews);
+
+                            }
+                        })
+                        .catch(err => console.log(err))
+                    swalWithBootstrapButtons.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                    });
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire({
+                        title: "Cancelled",
+                        text: "Your imaginary file is safe :)",
+                        icon: "error"
+                    });
+                }
+            });
+
+
+    }
+
+
     return (
         <div>
             <div className="overflow-x-auto border-2 border-gray-200 rounded-lg">
@@ -31,15 +89,15 @@ const MyReviews = () => {
                     </thead>
                     <tbody>
                         {myReviews.map((review, index) =>
-                            <tr>
+                            <tr key={review._id}>
                                 <th>{index + 1}</th>
                                 <td>{review.title}</td>
                                 <td>{review.genre}</td>
                                 <td>{review.publishingYear}</td>
                                 <td>{review.rating}</td>
                                 <td className='flex gap-5'>
-                                    <button>Edit</button>
-                                    <button className='text-red-700'>Delete</button>
+                                    <button>Update</button>
+                                    <button onClick={() => handleDelete(review._id)} className='text-red-700'>Delete</button>
                                 </td>
                             </tr>
                         )}

@@ -40,7 +40,7 @@ const AddReviews = () => {
             body: JSON.stringify(data)
         })
 
-        form.reset();
+        // form.reset();
     }
 
     return (
@@ -61,12 +61,18 @@ const AddReviews = () => {
                 <textarea name='description' className="w-full p-2 border rounded-lg mb-4" rows="4" placeholder="Write your review..."></textarea>
 
                 {/* Rating */}
-                <label className="block mb-2 font-semibold">Rating (1-10)</label>
-                <input name='rating' type="number" min="1" max="10" className="w-full p-2 border rounded-lg mb-4" />
+                <label className="block mb-2 font-semibold">Rating (1-5)</label>
+                <select name='rating' className="w-full p-2 border rounded-lg mb-4">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
 
                 {/* Publishing Year */}
                 <label className="block mb-2 font-semibold">Publishing Year</label>
-                <input name='publishingYear' type="number" className="w-full p-2 border rounded-lg mb-4" placeholder="Ex: 2024" />
+                <input name='publishingYear' type="number" className="w-full p-2 border rounded-lg mb-4" placeholder="Ex: 2025" />
 
                 {/* Genre Dropdown */}
                 <label className="block mb-2 font-semibold">Genre</label>
