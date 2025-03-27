@@ -5,7 +5,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Home from './Home';
+
 import AddReviews from './Components/reviews/AddReviews';
 import HomeLayout from './Components/HomeLayout';
 import Reviews from './Components/reviews/Reviews';
@@ -16,12 +16,18 @@ import MyReviews from './Components/reviews/MyReviews';
 import PrivateRoute from './Components/Authontications/PrivateRoute';
 import ReviewDetails from './Components/reviews/ReviewDetails';
 import UpdateReview from './Components/reviews/UpdateReview';
+import Home from './Home/Home';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout></HomeLayout>,
     children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+        loader: () => fetch("http://localhost:5000/reviews")
+      },
       {
         path: "/add-reviews",
         element: <AddReviews></AddReviews>

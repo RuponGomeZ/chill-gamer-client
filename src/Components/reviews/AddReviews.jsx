@@ -1,8 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../Authontications/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const AddReviews = () => {
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!user) {
+            navigate("/login");
+        }
+    }, [user, navigate]);
 
     const handleSubmit = (e) => {
         e.preventDefault();

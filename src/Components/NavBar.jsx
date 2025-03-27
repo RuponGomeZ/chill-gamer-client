@@ -6,8 +6,7 @@ import ThemeSwitch from './ThemeSwitch';
 
 const NavBar = () => {
 
-    const { user, userinfo, logOut } = useContext(AuthContext);
-    console.log(userinfo);
+    const { user, logOut } = useContext(AuthContext);
 
 
     const links = [

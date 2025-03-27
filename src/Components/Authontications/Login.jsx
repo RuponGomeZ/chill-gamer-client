@@ -43,7 +43,7 @@ const Login = () => {
     return (
         <div>
             <div className="flex justify-center items-center h-screen ">
-                <div className="bg-white p-8 rounded-lg shadow-md w-96">
+                <div className="bg-gray-500 p-8 rounded-lg shadow-md w-96">
                     <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
                     <form onSubmit={handleLogin}>
                         <div className="mb-4">
@@ -62,7 +62,7 @@ const Login = () => {
                                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 placeholder="Enter your password" />
                         </div>
-                        {error && <p className="text-red-500 mb-4">{error.split('/')[1].split(')')[0]}</p>}
+                        {error && <p className="text-red-800 mb-4">{error.split('/')[1].split(')')[0]}</p>}
                         <button
                             type="submit"
                             className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200">

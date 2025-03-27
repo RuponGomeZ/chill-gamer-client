@@ -1,15 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Authontications/AuthProvider';
 import Swal from 'sweetalert2';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const MyReviews = () => {
-    const { user } = useContext(AuthContext);
+    const { user, loading } = useContext(AuthContext);
     const email = user ? user.email : '';
     console.log(user);
 
     const [myReviews, setMyReviews] = useState([]);
     console.log(myReviews);
+
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!user) {
+            navigate("/login");
+        }
+    }, [user, navigate]);
 
     useEffect(() => {
         fetch(`http://localhost:5000/my-reviews/${email}`)

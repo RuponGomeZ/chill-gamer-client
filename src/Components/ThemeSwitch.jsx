@@ -1,27 +1,34 @@
 import React, { useEffect, useState } from 'react';
 
 const ThemeSwitch = () => {
-    const [theme, setTheme] = useState(localStorage.getItem("theme") ? localStorage.getItem("theme") : "light");
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
     const handleToggle = (e) => {
         if (e.target.checked) {
-            setTheme("dark")
+            setTheme("dark");
         } else {
-            setTheme("light")
+            setTheme("light");
         }
-    }
+    };
 
     useEffect(() => {
-        localStorage.setItem("theme", theme)
         const localTheme = localStorage.getItem("theme");
-        document.querySelector("html").setAttribute("data-theme", localTheme)
-    }, [theme])
+        if (localTheme) {
+            setTheme(localTheme);
+            document.querySelector("html").setAttribute("data-theme", localTheme);
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("theme", theme);
+        document.querySelector("html").setAttribute("data-theme", theme);
+    }, [theme]);
 
     return (
         <div>
             <label className="swap swap-rotate">
                 {/* this hidden checkbox controls the state */}
-                <input type="checkbox" onChange={handleToggle} />
+                <input type="checkbox" onChange={handleToggle} checked={theme === "dark"} />
 
                 {/* sun icon */}
                 <svg

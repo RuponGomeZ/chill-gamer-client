@@ -54,6 +54,13 @@ const AuthProvider = ({ children }) => {
                         setUser({ ...result.user, displayName: name, photoURL: photoURL });
                         console.log(result.user);
                         setLoading(false);
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Account created successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     })
             })
             .catch((error) => {
