@@ -13,7 +13,7 @@ const StayConnected = () => {
                     <p>Keep your eyes on Chill Gamer to win a Brand new Game Pad</p>
                     <img className='w-64 mx-auto mt-7' src={gamepad} alt="" />
                 </div>
-                <div className="  border rounded-xl row-span-2">
+                <div className="  border rounded-xl row-span-2 p-3">
                     <h4 className='font-bold text-3xl'>News & Updates</h4>
                     <h5 className=' text-xl underline'>Upcoming Games of 2025</h5>
 
