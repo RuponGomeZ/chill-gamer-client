@@ -3,7 +3,7 @@ import { AuthContext } from './AuthProvider';
 
 const Signup = () => {
 
-    const { createUser } = useContext(AuthContext)
+    const { createUser, error } = useContext(AuthContext)
 
 
     const handleSignUp = (e) => {
@@ -68,10 +68,10 @@ const Signup = () => {
                             />
                             <p className="text-xs text-red-500 mt-1 hidden">Password must have an uppercase letter, a lowercase letter, and be at least 6 characters long.</p>
                         </div>
+                        {error && <p className="text-red-500 mb-4">{error.split('/')[1].split(')')[0]}</p>}
                         <button
                             type="submit"
-                            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200"
-                        >
+                            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200">
                             Sign Up
                         </button>
                     </form>

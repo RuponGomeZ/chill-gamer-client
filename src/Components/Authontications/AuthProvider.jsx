@@ -8,6 +8,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [userinfo, setUserinfo] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     const provider = new GoogleAuthProvider();
 
@@ -41,7 +42,7 @@ const AuthProvider = ({ children }) => {
                 setLoading(false);
             })
             .catch((error) => {
-                console.log(error.message);
+                setError(error.message);
             })
     }
 
@@ -56,7 +57,7 @@ const AuthProvider = ({ children }) => {
                     })
             })
             .catch((error) => {
-                console.log(error.message);
+                setError(error.message);
             })
 
     }
@@ -70,7 +71,7 @@ const AuthProvider = ({ children }) => {
                 console.log(user);
             })
             .catch((error) => {
-                console.log(error.message);
+                setError(error.message);
             })
     }
 
@@ -97,6 +98,8 @@ const AuthProvider = ({ children }) => {
         createUser,
         loading,
         setLoading,
+        error,
+        setError
     }
     return (
         <AuthContext.Provider value={data}>

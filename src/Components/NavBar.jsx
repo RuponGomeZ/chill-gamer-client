@@ -1,6 +1,8 @@
 import React, { use, useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from './Authontications/AuthProvider';
+import { Tooltip } from 'react-tooltip';
+import ThemeSwitch from './ThemeSwitch';
 
 const NavBar = () => {
 
@@ -62,15 +64,20 @@ const NavBar = () => {
                         <div className='flex'>
                             <div className='justify-center items-center flex flex-col mr-4'>
                                 {/* <img className='w-10 rounded-full' src={user.photoURL} alt={user.name} /> */}
-                                <p className='font-bold'>{user.email}</p>
+                                <p data-tooltip-id="my-tooltip" className='font-bold'>{user.email}</p>
                             </div>
                             <div className='hidden sm:block'><button onClick={handleLogout} className=' underline my-auto cursor-pointer'>Logout</button></div>
                         </div>
                     ) : (
                         <Link to={"/login"} className="btn">Login/ Register</Link>
                     )}
+                    <div className='ml-6'><ThemeSwitch /></div>
                 </div>
-
+                {
+                    user ? <Tooltip id="my-tooltip" place="top" effect="solid">
+                        <img className=' rounded-full w-20 ' src={user.photoURL} alt="" />
+                    </Tooltip> : ''
+                }
             </div>
         </div >
     );

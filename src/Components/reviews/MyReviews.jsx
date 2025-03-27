@@ -22,8 +22,8 @@ const MyReviews = () => {
         console.log(id);
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
-                confirmButton: "btn btn-success",
-                cancelButton: "btn btn-danger"
+                confirmButton: "bg-green-500 text-white px-4 my-2 py-2 rounded-md hover:bg-green-600",
+                cancelButton: "bg-red-500 text-white px-4 my-4 py-2 rounded-md hover:bg-red-600"
             },
             buttonsStyling: false
         });
@@ -56,6 +56,7 @@ const MyReviews = () => {
                         title: "Deleted!",
                         text: "Your file has been deleted.",
                         icon: "success"
+
                     });
                 } else if (
                     /* Read more about handling dismissals below */
@@ -67,6 +68,7 @@ const MyReviews = () => {
                         icon: "error"
                     });
                 }
+
             });
 
 

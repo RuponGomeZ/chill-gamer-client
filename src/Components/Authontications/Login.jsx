@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
-    const { user, googleLogin, loginWithEmailNameAndPassword } = useContext(AuthContext);
+    const { user, googleLogin, loginWithEmailNameAndPassword, error, setError } = useContext(AuthContext);
     // console.log(googleLogin);
     const navigate = useNavigate();
     useEffect(() => {
@@ -16,6 +16,7 @@ const Login = () => {
     }, [user, navigate]);
 
     const handleLogin = (e) => {
+        setError(null);
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
@@ -61,6 +62,7 @@ const Login = () => {
                                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 placeholder="Enter your password" />
                         </div>
+                        {error && <p className="text-red-500 mb-4">{error.split('/')[1].split(')')[0]}</p>}
                         <button
                             type="submit"
                             className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition duration-200">
