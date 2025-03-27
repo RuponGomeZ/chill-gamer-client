@@ -1,25 +1,25 @@
 import React from 'react';
 
 const Banner = ({ data }) => {
-    console.log(data);
+    // console.log(data);
 
     return (
         <div>
-            <div className="carousel carousel-center bg-neutral rounded-box max-w-md space-x-4 p-4">
+            <div className="carousel carousel-center bg-neutral rounded-box max-w-4xl h-[400px] space-x-4 p-4">
                 <div className="carousel-item">
                     <img
-                        className='max-w-96 max-h-72 rounded-box'
+                        className='max-w-5xl max-h-5xl rounded-box'
                         src={data[0].img} />
                 </div>
                 <div className="carousel-item">
                     <img
                         src={data[1].img}
-                        className="max-w-72 max-h-52  rounded-box" />
+                        className="max-w-5xl max-h-5xl rounded-box" />
                 </div>
                 <div className="carousel-item">
                     <img
                         src={data[2].img}
-                        className="max-w-72 max-h-52  rounded-box" />
+                        className="max-w-5xl max-h-5xl rounded-box" />
                 </div>
                 {/* <div className="carousel-item">
                     <img
