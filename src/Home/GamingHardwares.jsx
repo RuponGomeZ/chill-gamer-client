@@ -6,7 +6,7 @@ import headset from '../assets/headset.jpg'
 
 const GamingHardwares = () => {
     return (
-        <div className='flex gap-10 justify-center'>
+        <div className='grid lg:grid-cols-4 gap-10 mx-auto w-fit'>
             <div>
                 <img className='w-48' src={headset} alt="" />
                 <h5 className='font-bold '>Razer Naga Expert MMO</h5>
@@ -23,7 +23,7 @@ const GamingHardwares = () => {
                 <p>$180.00 - $210.00</p>
             </div>
             <div>
-                <img className='w-48' src={headset} alt="" />
+                <img className='w-48' src={sonyGamepad} alt="" />
                 <h5 className='font-bold '>PS3 Original Gamepad</h5>
                 <p>$340.00 - $350.00</p>
             </div>

@@ -3,13 +3,14 @@ import { AuthContext } from '../Authontications/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 
 const AddReviews = () => {
-    const { user } = useContext(AuthContext);
+    const { user, setLoading, loading } = useContext(AuthContext);
     const navigate = useNavigate();
     useEffect(() => {
-        if (!user) {
+        if (!loading && !user) {
+
             navigate("/login");
         }
-    }, [user, navigate]);
+    }, [user, navigate, loading]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -48,6 +49,10 @@ const AddReviews = () => {
         })
 
         // form.reset();
+    }
+
+    if (loading) {
+        return <loading></loading>
     }
 
     return (

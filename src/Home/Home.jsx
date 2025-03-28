@@ -11,7 +11,7 @@ const Home = () => {
 
     return (
         <div>
-            <div className='mt-32'>
+            <div className='mt-32 '>
                 <h3 className='text-3xl mb-5'>Top Games</h3>
                 <Banner data={data} />
             </div>
@@ -22,7 +22,7 @@ const Home = () => {
             </div>
             <div className=' my-52 text-center '>
                 <h3><h3 className='text-3xl mb-5'>Stay Connected With Us</h3></h3>
-                <StayConnected></StayConnected>
+                <div className=''><StayConnected></StayConnected></div>
             </div>
             <div className='  text-center '>
                 <h3><h3 className='text-3xl mb-5'>Budget Gaming Hardwares You Can Buy</h3></h3>

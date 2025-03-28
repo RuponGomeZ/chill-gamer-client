@@ -58,7 +58,7 @@ const NavBar = () => {
                         {links}
                     </ul>
                 </div>
-                <div className="lg:navbar-end ">
+                <div className="lg:navbar-end flex">
                     {user?.email ? (
                         <div className='flex'>
                             <div className='justify-center items-center flex flex-col mr-4'>

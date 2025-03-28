@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
 const HighestRatedGames = () => {
-
-
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:5000/review/sorted")
             .then(res => res.json())
-            .then(data => setData(data))
-    }, [])
+            .then(data => setData(data));
+    }, []);
 
     return (
-        <div>
-            <div className="carousel w-[700px]">
+        <div className="flex justify-center lg:mx-0 mx-6">
+            <div className="carousel w-full max-w-[700px]">
                 {data.map((game, index) => (
                     <div
                         key={index}
@@ -23,7 +21,7 @@ const HighestRatedGames = () => {
                         <img
                             src={game.img}
                             alt={`Game ${index + 1}`}
-                            className="w-[700px] h-96"
+                            className="w-full h-64 md:h-80 lg:h-96 object-cover"
                         />
                         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                             {/* Previous Button */}
