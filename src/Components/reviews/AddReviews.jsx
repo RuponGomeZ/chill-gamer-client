@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../Authontications/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { Typewriter } from 'react-simple-typewriter';
 
 const AddReviews = () => {
     const { user, setLoading, loading } = useContext(AuthContext);
@@ -77,7 +78,15 @@ const AddReviews = () => {
     return (
         <div>
             <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6  shadow-lg rounded-xl">
-                <h2 className="text-2xl font-bold mb-4">Submit a Game Review</h2>
+                <h2 className="text-2xl font-bold mb-4"><Typewriter
+                    words={['Submit a Game Review']}
+                    loop={5}
+                    cursor
+                    cursorStyle='_'
+                    typeSpeed={70}
+                    deleteSpeed={50}
+                    delaySpeed={1000}
+                /></h2>
 
                 {/* Game Cover Image */}
                 <label className="block mb-2 font-semibold">Game Cover Image (URL)</label>

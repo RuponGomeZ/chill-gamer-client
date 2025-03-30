@@ -64,10 +64,10 @@ const ReviewDetails = () => {
     }
 
     return (
-        <div className="bg-base-200 max-h-fit my-auto w-full lg:w-8/12 mx-auto p-4 lg:p-10">
+        <div className="bg-base-200 max-h-fit my-auto w-5/6 lg:w-8/12 mx-auto p-4 lg:p-10">
             <div className="hero-content flex-col lg:flex-row lg:items-start lg:justify-start lg:space-x-10">
                 <img
-                    className="max-w-xs lg:max-w-sm rounded-lg shadow-2xl"
+                    className="lg:max-w-xs rounded-lg shadow-2xl"
                     src={reviewData.img}
                     alt={reviewData.title}
                 />

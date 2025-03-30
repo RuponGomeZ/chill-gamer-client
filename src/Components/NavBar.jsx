@@ -61,7 +61,18 @@ const NavBar = () => {
                             tabIndex={0}
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             <li>{links}</li>
-                            <li><button onClick={handleLogout} className=' underline my-auto cursor-pointer'>Logout</button></li>
+                            <li>{user ?
+                                <div>
+                                    <p>{user.email}</p>
+                                    <button onClick={handleLogout} className=' underline my-auto cursor-pointer'>Logout</button>
+                                </div>
+                                :
+                                <div className="flex">
+                                    {/* Hide Login button on small devices */}
+                                    <Link to={"/login"} className=" underline ">Login</Link>
+                                    {/* Hide Register button on small devices */}
+                                    <Link to={"/signup"} className=" underline ">Register</Link>
+                                </div>}</li>
                         </ul>
                     </div>
                     <Link to={"/"} className="btn btn-ghost text-xl">Chill Gamer</Link>
@@ -75,16 +86,20 @@ const NavBar = () => {
                     {user?.email ? (
                         <div className='flex'>
                             <div className='justify-center items-center flex flex-col mr-4'>
-                                {/* <img className='w-10 rounded-full' src={user.photoURL} alt={user.name} /> */}
+
                                 <p data-tooltip-id="my-tooltip" className='font-bold hidden sm:block'>{user.email}</p>
                             </div>
                             <div className='hidden my-auto sm:block'><button onClick={handleLogout} className=' underline my-auto cursor-pointer'>Logout</button></div>
                         </div>
                     ) : (
-                        <div><Link to={"/login"} className="btn bg-blue-400">Login</Link>
-                            <Link to={"/signup"} className="btn bg-blue-400">Register</Link></div>
+                        <div className="flex">
+                            {/* Hide Login button on small devices */}
+                            <Link to={"/login"} className="hidden pt-2 sm:block btn bg-blue-400 ">Login</Link>
+                            {/* Hide Register button on small devices */}
+                            <Link to={"/signup"} className="hidden pt-2 sm:block btn bg-blue-400 ">Register</Link>
+                        </div>
                     )}
-                    <div className='ml-6 '><ThemeSwitch /></div>
+                    <div className='ml-16 '><ThemeSwitch /></div>
                 </div>
                 {
                     user ? <Tooltip id="my-tooltip" place="top" effect="solid">

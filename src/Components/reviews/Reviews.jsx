@@ -20,7 +20,6 @@ const Reviews = () => {
                 .then(res => res.json())
                 .then(item => setReviews(item))
                 .catch(error => console.log(error))
-
         }
     }
 
@@ -48,7 +47,7 @@ const Reviews = () => {
                     </div>
                 </div>
             </div>
-            <div className='grid sm:grid-cols-1 lg:grid-cols-3 gap-10'>
+            <div className='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
                 {
                     reviews.map(review =>
                         <div key={review._id} className="card bg-base-100 w-80 shadow-xl">
@@ -62,6 +61,7 @@ const Reviews = () => {
                                 <h2 className="card-title">{review.title}</h2>
                                 <div className="badge badge-primary badge-outline">{review.genre}</div>
                                 <p>Published: {review.publishingYear}</p>
+                                <p className='font-thin'>Rated: {review.rating}</p>
                                 <div className="card-actions">
                                     <NavLink to={`/reviews/${review._id}`} className="btn btn-primary">Show details</NavLink>
                                 </div>

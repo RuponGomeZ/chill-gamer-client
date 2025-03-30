@@ -39,8 +39,8 @@ const WatchList = () => {
     };
 
     return (
-        <div>
-            <h2 className='font-bold text-3xl'><Typewriter
+        <div className='lg:w-full w-11/12'>
+            <h2 className='font-bold text-lg lg:text-3xl'><Typewriter
                 words={['Your Game WatchList']}
                 loop={5}
                 cursor
@@ -56,7 +56,7 @@ const WatchList = () => {
                         <tr>
                             <th>SL</th>
                             <th>Title</th>
-                            <th>Genre</th>
+                            <th className=' md:block hidden'>Genre</th>
                             <th>Rating</th>
                             <th>Manage</th>
                         </tr>
@@ -68,7 +68,7 @@ const WatchList = () => {
                                 <tr key={index}>
                                     <th>{index + 1}</th>
                                     <td>{item.reviewData.title}</td>
-                                    <td>{item.reviewData.genre}</td>
+                                    <td className=' md:block hidden'>{item.reviewData.genre}</td>
                                     <td>{item.reviewData.rating}</td>
                                     <td>
                                         <button
