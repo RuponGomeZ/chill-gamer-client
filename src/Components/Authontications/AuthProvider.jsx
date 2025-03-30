@@ -1,6 +1,7 @@
 import React, { createContext, use, useEffect, useState } from 'react';
 import { auth } from './firebase/firebase.init';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import Swal from 'sweetalert2';
 
 export const AuthContext = createContext();
 
@@ -15,6 +16,13 @@ const AuthProvider = ({ children }) => {
     const logOut = () => {
         signOut(auth)
             .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Logged Out successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 setUser(null);
                 setUserinfo(null);
             })
@@ -64,6 +72,8 @@ const AuthProvider = ({ children }) => {
                     })
             })
             .catch((error) => {
+                console.log(error);
+
                 setError(error.message);
             })
 
@@ -73,6 +83,13 @@ const AuthProvider = ({ children }) => {
         signInWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 const user = result.user;
+                if (user) {
+                    Swal.fire({
+                        title: "Logged in Successfully!",
+                        icon: "success",
+                        draggable: true
+                    });
+                }
                 setUser(user);
                 setLoading(false);
                 console.log(user);

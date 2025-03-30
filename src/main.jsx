@@ -17,11 +17,14 @@ import PrivateRoute from './Components/Authontications/PrivateRoute';
 import ReviewDetails from './Components/reviews/ReviewDetails';
 import UpdateReview from './Components/reviews/UpdateReview';
 import Home from './Home/Home';
+import WatchList from './WatchList';
+import ErrorPage from './ErrorPage';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <HomeLayout></HomeLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -60,7 +63,11 @@ const router = createBrowserRouter([
         path: "/signup",
         element: <Signup></Signup>
       },
-
+      {
+        path: "/watchList",
+        element: <PrivateRoute><WatchList></WatchList></PrivateRoute>,
+        loader: () => fetch('http://localhost:5000/watchList')
+      }
     ]
   },
 

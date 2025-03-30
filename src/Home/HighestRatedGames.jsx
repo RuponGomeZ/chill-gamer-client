@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const HighestRatedGames = () => {
     const [data, setData] = useState([]);
@@ -10,7 +11,7 @@ const HighestRatedGames = () => {
     }, []);
 
     return (
-        <div className="flex justify-center lg:mx-0 mx-6">
+        <div className="flex flex-col items-center lg:mx-0 mx-6">
             <div className="carousel w-full max-w-[700px]">
                 {data.map((game, index) => (
                     <div
@@ -23,6 +24,7 @@ const HighestRatedGames = () => {
                             alt={`Game ${index + 1}`}
                             className="w-full h-64 md:h-80 lg:h-96 object-cover"
                         />
+
                         <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
                             {/* Previous Button */}
                             <a
@@ -39,10 +41,21 @@ const HighestRatedGames = () => {
                                 ❯
                             </a>
                         </div>
+
+                        {/* Explore More Button */}
+                        <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2">
+                            <Link to={`/reviews/${game._id}`}>
+                                <button
+                                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
+
+                                >
+                                    Explore More
+                                </button></Link>
+                        </div>
                     </div>
                 ))}
             </div>
-        </div>
+        </div >
     );
 };
 

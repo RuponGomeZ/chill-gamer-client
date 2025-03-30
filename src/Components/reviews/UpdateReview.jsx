@@ -43,7 +43,7 @@ const UpdateReview = () => {
                     .then(res => res.json())
                     .then(data => { console.log(data) })
                     .catch(err => { console.log(err) })
-                Swal.fire("Saved!", "", "success");
+                Swal.fire("Review Updated Successfully!", "", "success");
             } else if (result.isDenied) {
                 Swal.fire("Changes are not saved", "", "info");
             }

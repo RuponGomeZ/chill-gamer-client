@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../Authontications/AuthProvider';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const AddReviews = () => {
     const { user, setLoading, loading } = useContext(AuthContext);
@@ -36,7 +37,25 @@ const AddReviews = () => {
             body: JSON.stringify(data)
         })
             .then(res => res.json())
-            .then(data => { console.log(data) })
+            .then(data => {
+                console.log(data);
+
+                if (data.acknowledged) {
+                    Swal.fire({
+                        title: "Review Added Successfully!",
+                        icon: "success",
+                        draggable: true
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Failed to Add Review",
+                        text: "Something went wrong.",
+                        icon: "error",
+                        draggable: true
+                    });
+                }
+
+            })
             .catch(err => { console.log(err) })
 
         //  Adding to my reviews
@@ -84,7 +103,15 @@ const AddReviews = () => {
 
                 {/* Publishing Year */}
                 <label className="block mb-2 font-semibold">Publishing Year</label>
-                <input name='publishingYear' type="number" className="w-full p-2 border rounded-lg mb-4" placeholder="Ex: 2025" />
+                <input
+                    name="publishingYear"
+                    type="number"
+                    className="w-full p-2 border rounded-lg mb-4"
+                    placeholder="Ex: 2025"
+                    min="1999"
+                    max="2025"
+                    required
+                />
 
                 {/* Genre Dropdown */}
                 <label className="block mb-2 font-semibold">Genre</label>

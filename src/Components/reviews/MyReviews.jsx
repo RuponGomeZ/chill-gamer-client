@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Authontications/AuthProvider';
 import Swal from 'sweetalert2';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { Typewriter } from 'react-simple-typewriter';
 
 const MyReviews = () => {
     const { user, loading } = useContext(AuthContext);
@@ -43,19 +44,16 @@ const MyReviews = () => {
             cancelButtonText: "No, cancel!",
             reverseButtons: true
         })
-
             .then((result) => {
                 if (result.isConfirmed) {
                     fetch(`http://localhost:5000/delete-review/${id}`, {
                         method: 'DELETE'
-                    }
-                    )
+                    })
                         .then(res => res.json())
                         .then(data => {
                             if (data.deletedCount > 0) {
                                 const remainingReviews = myReviews.filter(review => review._id !== id);
                                 setMyReviews(remainingReviews);
-
                             }
                         })
                         .catch(err => console.log(err))
@@ -63,54 +61,68 @@ const MyReviews = () => {
                         title: "Deleted!",
                         text: "Your file has been deleted.",
                         icon: "success"
-
                     });
-                } else if (
-                    /* Read more about handling dismissals below */
-                    result.dismiss === Swal.DismissReason.cancel
-                ) {
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
                     swalWithBootstrapButtons.fire({
                         title: "Cancelled",
                         text: "Your imaginary file is safe :)",
                         icon: "error"
                     });
                 }
-
             });
-
-
     }
 
-
     return (
-        <div>
+        <div className="p-2 sm:p-4 max-w-7xl mx-auto">
+            <h2 className='font-bold text-2xl mb-6'> <Typewriter
+                words={['My Reviews']}
+                loop={5}
+                cursor
+                cursorStyle='_'
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={1000}
+            /></h2>
+            {/* Responsive container with smaller padding on mobile */}
             <div className="overflow-x-auto border-2 border-gray-200 rounded-lg">
-                <table className="table table-zebra">
-                    {/* head */}
+                <table className="min-w-full table-auto table-zebra">
+                    {/* Make table responsive */}
                     <thead>
-                        <tr>
-                            <th>SL</th>
-                            <th>Name</th>
-                            <th>Genre</th>
-                            <th>Published</th>
-                            <th>Rated</th>
-                            <th>Actions</th>
+                        <tr className="text-left bg-gray-400 text-xs sm:text-sm md:text-base">
+                            {/* Smaller text on mobile */}
+                            <th className="px-2 py-1 sm:px-4 sm:py-2">SL</th>
+                            <th className="px-2 py-1 sm:px-4 sm:py-2">Name</th>
+                            <th className="px-2 py-1 sm:px-4 sm:py-2 hidden sm:table-cell">Genre</th>
+                            <th className="px-2 py-1 sm:px-4 sm:py-2 hidden sm:table-cell">Published</th>
+                            <th className="px-2 py-1 sm:px-4 sm:py-2">Rated</th>
+                            <th className="px-2 py-1 sm:px-4 sm:py-2">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {myReviews.map((review, index) =>
-                            <tr key={review._id}>
-                                <th>{index + 1}</th>
-                                <td>{review.title}</td>
-                                <td>{review.genre}</td>
-                                <td>{review.publishingYear}</td>
-                                <td>{review.rating}</td>
-                                <td className='flex gap-5'>
-                                    <button><NavLink to={`/update-review/${review._id}`}>Update</NavLink></button>
-                                    <button onClick={() => handleDelete(review._id)} className='text-red-700'>Delete</button>
+                        {myReviews.map((review, index) => (
+                            <tr key={review._id} className="text-xs sm:text-sm md:text-base">
+                                {/* Smaller text on mobile */}
+                                <th className="px-2 py-1 sm:px-4 sm:py-2">{index + 1}</th>
+                                <td className="px-2 py-1 sm:px-4 sm:py-2">{review.title}</td>
+                                <td className="px-2 py-1 sm:px-4 sm:py-2 hidden sm:table-cell">{review.genre}</td>
+                                <td className="px-2 py-1 sm:px-4 sm:py-2 hidden sm:table-cell">{review.publishingYear}</td>
+                                <td className="px-2 py-1 sm:px-4 sm:py-2">{review.rating}</td>
+                                <td className="px-2 py-1 sm:px-4 sm:py-2">
+                                    <div className="flex flex-col sm:flex-row gap-1 sm:gap-2 md:gap-4">
+                                        {/* Stack buttons vertically on small screens */}
+                                        <button className="text-blue-600 hover:underline text-xs sm:text-sm">
+                                            <NavLink to={`/update-review/${review._id}`}>Update</NavLink>
+                                        </button>
+                                        <button
+                                            onClick={() => handleDelete(review._id)}
+                                            className="text-red-600 hover:underline text-xs sm:text-sm"
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
-                        )}
+                        ))}
                     </tbody>
                 </table>
             </div>

@@ -1,10 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { AuthContext } from './AuthProvider';
+import Swal from 'sweetalert2';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
 
-    const { createUser, error, setError } = useContext(AuthContext)
+    const { user, createUser, error, setError } = useContext(AuthContext)
 
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    useEffect(() => {
+        if (user) {
+            navigate("/");
+        }
+    }, [user, navigate]);
 
     const handleSignUp = (e) => {
         e.preventDefault();
@@ -12,7 +22,7 @@ const Signup = () => {
 
         setTimeout(() => {
             setError(null);
-        }, 0);
+        }, 2);
 
         const form = e.target;
         const name = form.name.value;
@@ -23,13 +33,20 @@ const Signup = () => {
 
         const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
         if (!regex.test(password)) {
-            setError("Password must contain at least one uppercase letter, one lowercase letter, and one number");
+            Swal.fire({
+                title: "Password didn't match requirement",
+                text: "Password must contain at least one uppercase letter, one lowercase letter, and one number",
+                icon: "error",
+                draggable: true
+            });
+            // setError("Password must contain at least one uppercase letter, one lowercase letter, and one number");
             return;
         }
 
         createUser(email, password, name, photoURL)
             .then(() => {
                 setError(null)
+                navigate(location?.state?.from || "/")
             })
 
         fetch("http://localhost:5000/signUp", {
@@ -48,7 +65,7 @@ const Signup = () => {
                     <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
                     <form onSubmit={handleSignUp}>
                         <div className="mb-4">
-                            <label className="block text-gray-500 font-semibold mb-2">Name</label>
+                            <label className="block text-gray-700 font-semibold mb-2">Name</label>
                             <input
                                 name='name'
                                 type="text"
