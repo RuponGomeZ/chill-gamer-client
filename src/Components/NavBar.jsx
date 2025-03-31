@@ -22,9 +22,9 @@ const NavBar = () => {
             <>
                 <NavLink key="add-reviews" to={"/add-reviews"}>Add Review</NavLink>
                 <NavLink key="my-reviews" to={`/my-reviews/${user.email}`}>My Reviews</NavLink>
+                < NavLink key="watchList" to={"/watchList"} > Game WatchList</NavLink >
             </>
         ),
-        < NavLink key="watchList" to={"/watchList"} > Game WatchList</NavLink >
     ]
 
     const handleLogout = () => {

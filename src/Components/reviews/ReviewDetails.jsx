@@ -12,7 +12,7 @@ const ReviewDetails = () => {
 
     useEffect(() => {
         if (user) {
-            fetch("http://localhost:5000/watchList")
+            fetch("https://game-review-server-site.vercel.app/watchList")
                 .then(res => res.json())
                 .then(data => {
                     // if(data.)
@@ -35,7 +35,7 @@ const ReviewDetails = () => {
         // const reviewerEmail = reviewData.email;
         const data = { email, name, reviewId: reviewData._id, reviewData }
 
-        fetch("http://localhost:5000/addToWatchList", {
+        fetch("https://game-review-server-site.vercel.app/addToWatchList", {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

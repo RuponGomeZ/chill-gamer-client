@@ -13,6 +13,7 @@ const Home = () => {
         <div>
             <div className='mt-32 '>
                 <h3 className='text-3xl mb-5'>Top Games</h3>
+                <p className='text-gray-400'>Picked By Gamers</p>
                 <Banner data={data} />
             </div>
 

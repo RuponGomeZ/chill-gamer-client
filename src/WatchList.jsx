@@ -13,7 +13,7 @@ const WatchList = () => {
     console.log(data);
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/watchList/${id}`, {
+        fetch(`https://game-review-server-site.vercel.app/watchList/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -27,7 +27,7 @@ const WatchList = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    fetch("http://localhost:5000/watchList")
+                    fetch("https://game-review-server-site.vercel.app/watchList")
                         .then(res => res.json())
                         .then(updatedData => {
                             const userWatchlist = updatedData.filter(item => item.email === user.email);
@@ -39,7 +39,7 @@ const WatchList = () => {
     };
 
     return (
-        <div className='lg:w-full w-11/12'>
+        <div className='lg:w-2/4 w-11/12'>
             <h2 className='font-bold text-lg lg:text-3xl'><Typewriter
                 words={['Your Game WatchList']}
                 loop={5}

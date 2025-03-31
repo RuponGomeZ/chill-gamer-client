@@ -5,7 +5,7 @@ const HighestRatedGames = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/review/sorted")
+        fetch("https://game-review-server-site.vercel.app/review/sorted")
             .then(res => res.json())
             .then(data => setData(data));
     }, []);

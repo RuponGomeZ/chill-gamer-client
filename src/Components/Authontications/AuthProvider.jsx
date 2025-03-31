@@ -30,7 +30,7 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (user) {
-            fetch('http://localhost:5000/users')
+            fetch('https://game-review-server-site.vercel.app/users')
                 .then(res => res.json())
                 .then(data => setUserinfo(data))
                 .then(() => setLoading(false))

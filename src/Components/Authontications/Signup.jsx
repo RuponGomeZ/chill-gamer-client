@@ -49,7 +49,7 @@ const Signup = () => {
                 navigate(location?.state?.from || "/")
             })
 
-        fetch("http://localhost:5000/signUp", {
+        fetch("https://game-review-server-site.vercel.app/signUp", {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
