@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
     const { user, googleLogin, loginWithEmailNameAndPassword, error, setError } = useContext(AuthContext);
-    // console.log(googleLogin);
+
     const navigate = useNavigate();
     useEffect(() => {
         if (user) {

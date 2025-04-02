@@ -8,17 +8,16 @@ const ReviewDetails = () => {
     const reviewDetails = useLoaderData();
     const reviewData = reviewDetails[0];
     const [isAdded, setIsAdded] = useState(false);
-    // console.log(reviewData, user);
+
 
     useEffect(() => {
         if (user) {
-            fetch("https://game-review-server-site.vercel.app/watchList")
+            fetch("http://localhost:5000/watchList")
                 .then(res => res.json())
                 .then(data => {
-                    // if(data.)
-                    // console.log(data[0]);
+
                     const exists = data.find(item => item.email === user.email && item.reviewId === reviewData._id);
-                    // console.log(exists);
+
 
                     if (exists)
                         setIsAdded(true)
@@ -31,11 +30,9 @@ const ReviewDetails = () => {
     const handleAddToWatchList = () => {
         const email = user.email;
         const name = user.name;
-        // const reviewerName = reviewData.name;
-        // const reviewerEmail = reviewData.email;
         const data = { email, name, reviewId: reviewData._id, reviewData }
 
-        fetch("https://game-review-server-site.vercel.app/addToWatchList", {
+        fetch("http://localhost:5000/addToWatchList", {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

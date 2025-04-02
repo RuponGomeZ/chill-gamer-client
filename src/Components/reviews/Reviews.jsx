@@ -11,12 +11,12 @@ const Reviews = () => {
 
     const handleSort = (sort) => {
         if (sort === "rating") {
-            fetch("https://game-review-server-site.vercel.app/review/sortbyRating")
+            fetch("http://localhost:5000/review/sortbyRating")
                 .then(res => res.json())
                 .then(item => setReviews(item))
                 .catch(error => console.log(error))
         } else if (sort === "year") {
-            fetch("https://game-review-server-site.vercel.app/review/sortbyYear")
+            fetch("http://localhost:5000/review/sortbyYear")
                 .then(res => res.json())
                 .then(item => setReviews(item))
                 .catch(error => console.log(error))
@@ -24,7 +24,7 @@ const Reviews = () => {
     }
 
     const handleFilter = (genre) => {
-        fetch(`https://game-review-server-site.vercel.app/review/${genre}`)
+        fetch(`http://localhost:5000/review/${genre}`)
             .then(res => res.json())
             .then(data => setReviews(data))
             .catch(error => console.log(error))

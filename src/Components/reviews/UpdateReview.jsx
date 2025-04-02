@@ -33,7 +33,7 @@ const UpdateReview = () => {
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
             if (result.isConfirmed) {
-                fetch(`https://game-review-server-site.vercel.app/update-review/${gameData._id}`, {
+                fetch(`http://localhost:5000/update-review/${gameData._id}`, {
                     method: "PATCH",
                     headers: {
                         'content-type': 'application/json'

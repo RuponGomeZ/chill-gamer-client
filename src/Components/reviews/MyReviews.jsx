@@ -20,7 +20,7 @@ const MyReviews = () => {
     }, [user, navigate]);
 
     useEffect(() => {
-        fetch(`https://game-review-server-site.vercel.app/my-reviews/${email}`)
+        fetch(`http://localhost:5000/my-reviews/${email}`)
             .then(res => res.json())
             .then(data => setMyReviews(data))
             .catch(err => console.log(err))
@@ -46,7 +46,7 @@ const MyReviews = () => {
         })
             .then((result) => {
                 if (result.isConfirmed) {
-                    fetch(`https://game-review-server-site.vercel.app/delete-review/${id}`, {
+                    fetch(`http://localhost:5000/delete-review/${id}`, {
                         method: 'DELETE'
                     })
                         .then(res => res.json())

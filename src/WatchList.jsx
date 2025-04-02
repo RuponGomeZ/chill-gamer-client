@@ -13,7 +13,7 @@ const WatchList = () => {
     console.log(data);
 
     const handleDelete = (id) => {
-        fetch(`https://game-review-server-site.vercel.app/watchList/${id}`, {
+        fetch(`http://localhost:5000/watchList/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())
@@ -27,7 +27,7 @@ const WatchList = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    fetch("https://game-review-server-site.vercel.app/watchList")
+                    fetch("http://localhost:5000/watchList")
                         .then(res => res.json())
                         .then(updatedData => {
                             const userWatchlist = updatedData.filter(item => item.email === user.email);

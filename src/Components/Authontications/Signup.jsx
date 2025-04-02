@@ -39,7 +39,7 @@ const Signup = () => {
                 icon: "error",
                 draggable: true
             });
-            // setError("Password must contain at least one uppercase letter, one lowercase letter, and one number");
+
             return;
         }
 
@@ -49,7 +49,7 @@ const Signup = () => {
                 navigate(location?.state?.from || "/")
             })
 
-        fetch("https://game-review-server-site.vercel.app/signUp", {
+        fetch("http://localhost:5000/signUp", {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

@@ -7,7 +7,6 @@ import GamingHardwares from './GamingHardwares';
 
 const Home = () => {
     const data = useLoaderData()
-    // console.log(data);
 
     return (
         <div>

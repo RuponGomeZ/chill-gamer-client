@@ -5,7 +5,7 @@ Welcome to Chill Gamer, a platform where users can explore, review, and share th
 ## Live Site Links
 
 - Client Site: [Chill Gamer](https://chill-gamer-c45cc.web.app/)
-- Server Site: [Game Review Server](https://game-review-server-site.vercel.app/)
+- Server Site: [Game Review Server](http://localhost:5000/)
 
 ## Features
 
@@ -65,7 +65,7 @@ Welcome to Chill Gamer, a platform where users can explore, review, and share th
 
     - For the client, create a `.env` file in the `chill-gamer-client` directory and add:
       ```
-      REACT_APP_API_URL=https://game-review-server-site.vercel.app/
+      REACT_APP_API_URL=http://localhost:5000/
       ```
     - For the server, create a `.env` file in the `game-review-server-site` directory and add your MongoDB connection string:
       ```

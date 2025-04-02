@@ -30,7 +30,7 @@ const AddReviews = () => {
         const data = { img, title, description, rating, publishingYear, genre, name, email };
 
         // Adding to all reviews
-        fetch("https://game-review-server-site.vercel.app/add-reviews", {
+        fetch("http://localhost:5000/add-reviews", {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -57,7 +57,7 @@ const AddReviews = () => {
             .catch(err => console.log(err));
 
         // Adding to my reviews
-        fetch("https://game-review-server-site.vercel.app/add-my-reviews", {
+        fetch("http://localhost:5000/add-my-reviews", {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
